@@ -18,3 +18,7 @@ func _ready():
 
 func _on_QuitButton_pressed():
 	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+
+
+func _on_PlatformerButton_pressed():
+	get_tree().change_scene('res://Scenes/Platformer/Main.tscn')

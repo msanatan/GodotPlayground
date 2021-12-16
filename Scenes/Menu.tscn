@@ -90,4 +90,5 @@ size_flags_horizontal = 0
 theme = ExtResource( 2 )
 text = "Quit"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuOptions/PlatformerButton" to="." method="_on_PlatformerButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MenuOptions/QuitButton" to="." method="_on_QuitButton_pressed"]
