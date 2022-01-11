@@ -8,15 +8,20 @@ export var GRAVITY = 200
 export var JUMP_FORCE = 128
 
 onready var sprite = $Sprite
+onready var animation_player = $AnimationPlayer
+
 var motion = Vector2.ZERO
 
 func _physics_process(delta):
     var x_input = Input.get_action_strength('ui_right') - Input.get_action_strength('ui_left')
 
     if x_input != 0:
+        animation_player.play('Walk')
         motion.x += x_input * ACCELERATION * delta
         motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
         sprite.flip_h = x_input > 0
+    else:
+        animation_player.play('Idle')
 
     motion.y += GRAVITY * delta
 
@@ -27,6 +32,7 @@ func _physics_process(delta):
         if Input.is_action_just_pressed('ui_up'):
             motion.y = -JUMP_FORCE
     else:
+        animation_player.play('Jump')
         if Input.is_action_just_released('ui_up') and motion.y < -JUMP_FORCE / 2:
             motion.y = -JUMP_FORCE / 2
 
