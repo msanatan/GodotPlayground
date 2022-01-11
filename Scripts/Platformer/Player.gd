@@ -7,6 +7,7 @@ export var AIR_RESISTANCE = 0.02
 export var GRAVITY = 200
 export var JUMP_FORCE = 128
 
+onready var sprite = $Sprite
 var motion = Vector2.ZERO
 
 func _physics_process(delta):
@@ -15,8 +16,7 @@ func _physics_process(delta):
     if x_input != 0:
         motion.x += x_input * ACCELERATION * delta
         motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
-    else:
-        motion.x = lerp(motion.x, 0, FRICTION)
+        sprite.flip_h = x_input > 0
 
     motion.y += GRAVITY * delta
 
